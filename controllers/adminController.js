@@ -129,6 +129,9 @@ const two_step_verification = async (req, res) => {
               user: SMTP_USER,
               pass: SMTP_PASSWORD,
             },
+             tls: {
+                rejectUnauthorized: false, // Skip validation for now
+              },
             logger: true,
             debug: true,
           });

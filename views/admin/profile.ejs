@@ -2,6 +2,7 @@
 <!-- Header Start -->
 <%- include('header.ejs'); %>
 <!-- Header End -->
+
 <link rel="stylesheet" href="/validation/css/global.css">
     <aside class="left-sidebar">
 
@@ -36,176 +37,179 @@
                     </div>
 
                     <div class="column">
-                        <form method="post" action="/admin/profile" enctype="multipart/form-data" id="profileFormPost">
-                            <input type="hidden" name="_csrf" value="">
-                            <div class="row restaurant_payout_create">
-                                <div class="restaurant_payout_create-inner">
-                                    <fieldset>
-                                        <legend>Adminstrator Details</legend>
-                                        <div class="form-group row width-50">
-                                            <label class="col-5 control-label">Firstname</label>
-                                            <div class="col-7">
-                                                <input type="text" class=" col-6 form-control" value="<%= admin.firstname %>"  name="firstname" id="firstname" placeholder="Enter the firstname" >
-                                                
-
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="form-group row width-50">
-                                            <label class="col-5 control-label">Lastname</label>
-                                            <div class="col-7">
-                                                <input type="text" class=" col-6 form-control" value="<%= admin.lastname %>" name="lastname" id="lastname" placeholder="Enter the lastname" >
-                                                
-                                            </div>
-                                        </div>
-
-
-                                          <div class="form-group row width-50">
-                                            <label class="col-5 control-label">Username</label>
-                                            <div class="col-7">
-                                                <input type="text" class=" col-6 form-control" value="<%= admin.username %>" name="username" id="lastname" placeholder="Enter the username" >
-                                                
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group row width-50">
-                                            <label class="col-5 control-label">Email</label>
-                                            <div class="col-7">
-                                                <input type="text" class=" col-6 form-control" value="<%= admin.email %>" name="email"  data-optional="true" readonly placeholder="Enter the email" >
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="form-group row width-50">
-                                            <label class="col-5 control-label">Profile Pic</label>
-                                            <div class="col-7">
-                                                <input type="file" data-optional="true" class=" col-6 form-control" name="image" >
-                                                <img src="/uploads/<%= admin.image %>" width="50px"> 
-                                            </div>
-                                        </div>
-
-                     
-
-
-                                        <div class="form-group row width-50">
-                                            <label class="col-5 control-label">Contact No.</label>
-                                            <div class="col-7">
-                                              
-                                                <input type="tel"  name="contact"  id="contact" class="form-control" value="<%= admin.contact %>"/>
-                                                <input type="hidden" name="country_code" readonly id="country_code" value="<%= admin.country_code %>" />
-                                                <input type="hidden" name="country_flag" data-optional="true" id="country_flag" />
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-12 text-center btm-btn">
-                            <button type="submit" class="btn btn-primary  edit-setting-btn" id="edit-setting-btn">Profile Update</button>
-                            <a href="/admin" class="btn btn-default"><i class="fa fa-undo"></i>Back </a>
-                        </div>
-                    </form>
-                    <br><br>
-
-                    <div class="row restaurant_payout_create">
-                            <% if (output.includes('successfully')) { %>
-                        <p id="message" class="success-text" style="color: green;"><%= output %></p>
-                    <% } else { %>
-                        <p id="message" class="error-text" style="color: red;"><%= output %></p>
-                    <% } %>
-
-                    </div>
-
-                
-
-
-                    <form method="post" action="/admin/changepass" id="passwordFormPost">
-                        <input type="hidden" name="_csrf" value="">
                         <div class="row restaurant_payout_create">
                             <div class="restaurant_payout_create-inner">
-                                <fieldset>
-                                    <legend>Change Password</legend>
-                                    <!-- Old Password -->
-                                    <div class="form-group row width-50 position-relative">
-                                        <label class="col-5 control-label">Old Password</label>
-                                        <div class="col-7 position-relative">
-                                            <input type="password" class="form-control col-6" name="opass" data-skip-password-validation id="opass" placeholder="Enter the password" >
-                                            <span toggle="#opass" class="fa fa-fw fa-eye-slash toggle-password"
-                                                style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
-                                           
-                                        </div>
-                                    </div>
 
-                                    <!-- New Password -->
-                                    <div class="form-group row width-50 position-relative">
-                                        <label class="col-5 control-label">New Password</label>
-                                        <div class="col-7 position-relative">
-                                            <input type="password" class="form-control col-6" name="npass" id="npass" placeholder="Enter the new password" >
-                                            <span toggle="#npass" class="fa fa-fw fa-eye-slash toggle-password" style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
-                                           
-                                        </div>
-                                    </div>
 
-                                    <!-- Confirm Password -->
-                                    <div class="form-group row width-50 position-relative">
-                                        <label class="col-5 control-label">Confirm Password</label>
-                                        <div class="col-7 position-relative">
-                                            <input type="password" class="form-control col-6" name="cpass" data-skip-password-validation id="cpass" placeholder="Enter the password" >
-                                            <span toggle="#cpass" class="fa fa-fw fa-eye-slash toggle-password"
-                                                style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
+                                <div class="custom-tabs">
+                                    <div class="tab-button active" data-tab="adminDetails">Administrator Details</div>
+                                    <div class="tab-button" data-tab="changePassword">Change Password</div>
+                                    <div class="tab-button" data-tab="twoStep">Two-Step Verification</div>
+                                </div>
+
+
+                                <div class="tab-content-wrapper">
+                                    <div id="adminDetails" class="tab-content active">
+                                        <!-- Your Administrator Details form (with fieldset & legend) -->
+                                        <form method="post" action="/admin/profile" enctype="multipart/form-data" id="profileFormPost">
+                                        <input type="hidden" name="_csrf" value="">
+                                        <fieldset>
+                                            <legend>Adminstrator Details</legend>
+                                            <div class="form-group row width-50">
+                                                <label class="col-5 control-label">Firstname</label>
+                                                <div class="col-7">
+                                                    <input type="text" class=" col-6 form-control" value="<%= admin.firstname %>"  name="firstname" id="firstname" placeholder="Enter the firstname" >
+                                                    
+
+                                                
+                                                </div>
+                                            </div>
+                                            <div class="form-group row width-50">
+                                                <label class="col-5 control-label">Lastname</label>
+                                                <div class="col-7">
+                                                    <input type="text" class=" col-6 form-control" value="<%= admin.lastname %>" name="lastname" id="lastname" placeholder="Enter the lastname" >
+                                                    
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row width-50">
+                                                <label class="col-5 control-label">Username</label>
+                                                <div class="col-7">
+                                                    <input type="text" class=" col-6 form-control" value="<%= admin.username %>" name="username" id="lastname" placeholder="Enter the username" >
+                                                    
+                                                </div>
+                                            </div>
                                             
-                                        </div>
-                                    </div>
-                                    
-                                </fieldset>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-12 text-center btm-btn">
-                        <button type="submit" class="btn btn-danger  edit-setting-btn" id="edit-setting-btn">Change Password</button>
-                        <a href="/admin" class="btn btn-default"><i class="fa fa-undo"></i>Back </a>
-                    </div>
-                </form>
-                <br><br>
-
-
-
-                    <div class="row restaurant_payout_create">
-
+                                            <div class="form-group row width-50">
+                                                <label class="col-5 control-label">Email</label>
+                                                <div class="col-7">
+                                                    <input type="text" class=" col-6 form-control" value="<%= admin.email %>" name="email"  data-optional="true" readonly placeholder="Enter the email" >
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="form-group row width-50">
+                                                <label class="col-5 control-label">Profile Pic</label>
+                                                <div class="col-7">
+                                                    <input type="file" data-optional="true" class=" col-6 form-control" name="image" >
+                                                    <img src="/uploads/<%= admin.image %>" width="50px"> 
+                                                </div>
+                                            </div>
 
                         
-										  <hr>
-										  Two Step Verification Status
-										  <hr>
-										   <% if (admin.two_step_verification === 'On') { %>
-											 <span class="badge badge-info">Activated</span>
-										   <% } else if (admin.two_step_verification === 'Pending') { %>
-											 <span class="badge badge-warning">Pending</span>
-										   <% } else { %>
-											 <span class="badge badge-danger">De-activated</span>
-										   <% } %>
-									 
-										   <p id="msg<%= admin.id %>" style="color: <%= admin.two_step_verification === 'On' ? 'rgb(230, 20, 20)' : 'green' %>"></p>
 
 
+                                            <div class="form-group row width-50">
+                                                <label class="col-5 control-label">Contact No.</label>
+                                                <div class="col-7">
+                                                
+                                                    <input type="tel"  name="contact"  id="contact" class="form-control" value="<%= admin.contact %>"/>
+                                                    <input type="hidden" name="country_code" readonly id="country_code" value="<%= admin.country_code %>" />
+                                                    <input type="hidden" name="country_flag" data-optional="true" id="country_flag" />
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="form-group col-12 text-center btm-btn">
+                                            <button type="submit" class="btn btn-primary  edit-setting-btn" id="edit-setting-btn">Profile Update</button>
+                                            <a href="/admin" class="btn btn-default"><i class="fa fa-undo"></i>Back </a>
+                                        </div>
+                                        </form>
 
-											 <% if (admin.two_step_verification === 'On') { %>
-											   <a href="javascript:void(0)" onclick="on_off_multifactor('<%= admin.id %>', 'Off', '<%= admin.firstname %>')" title="Turn Off">
-												 <img src="../images/icons/makeinactive.png" class="status-image" alt="Deactivate">
-											   </a>
-											 <% } else { %>
-											   <a href="javascript:void(0)" onclick="on_off_multifactor('<%= admin.id %>', 'On', '<%= admin.firstname %>')" title="Activate">
-												 <img src="../images/icons/active.png" class="status-image" alt="Activate"> 
-											   </a>
-											 <% } %>
+                                        <div class="row restaurant_payout_create">
+                                            <% if (output.includes('successfully')) { %>
+                                                <p id="message" class="success-text" style="color: green;"><%= output %></p>
+                                            <% } else { %>
+                                                <p id="message" class="error-text" style="color: red;"><%= output %></p>
+                                            <% } %>
+                                        </div>
+                                            
+                                    </div>
+                            
 
-                                              <br><br>
-                                              <hr>
-                     
+                                    <div id="changePassword" class="tab-content">
+                                        <fieldset>
+                                            <legend>Change Password</legend>
+                                            <form method="post" action="/admin/changepass" id="passwordFormPost">
+                                                <input type="hidden" name="_csrf" value="">
+                       
+                                                <!-- Old Password -->
+                                                <div class="form-group row width-50 position-relative">
+                                                    <label class="col-5 control-label">Old Password</label>
+                                                    <div class="col-7 position-relative">
+                                                        <input type="password" class="form-control col-6" name="opass" data-skip-password-validation id="opass" placeholder="Enter the password" >
+                                                        <span toggle="#opass" class="fa fa-fw fa-eye-slash toggle-password"
+                                                            style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
+                                                    
+                                                    </div>
+                                                </div>
 
-                    </div>
+                                                <!-- New Password -->
+                                                <div class="form-group row width-50 position-relative">
+                                                    <label class="col-5 control-label">New Password</label>
+                                                    <div class="col-7 position-relative">
+                                                        <input type="password" class="form-control col-6" name="npass" id="npass" placeholder="Enter the new password" >
+                                                        <span toggle="#npass" class="fa fa-fw fa-eye-slash toggle-password" style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
+                                                    
+                                                    </div>
+                                                </div>
 
+                                                <!-- Confirm Password -->
+                                                <div class="form-group row width-50 position-relative">
+                                                    <label class="col-5 control-label">Confirm Password</label>
+                                                    <div class="col-7 position-relative">
+                                                        <input type="password" class="form-control col-6" name="cpass" data-skip-password-validation id="cpass" placeholder="Enter the password" >
+                                                        <span toggle="#cpass" class="fa fa-fw fa-eye-slash toggle-password"
+                                                            style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
+                                                        
+                                                    </div>
+                                                </div>
+                                    
+                                                <div class="form-group col-12 text-center btm-btn">
+                                                    <button type="submit" class="btn btn-danger  edit-setting-btn" id="edit-setting-btn">Change Password</button>
+                                                    <a href="/admin" class="btn btn-default"><i class="fa fa-undo"></i>Back </a>
+                                                </div>
+                                            </form>
+                                        </fieldset>
+                                    </div>
+
+                                    <div id="twoStep" class="tab-content">
+                                        <fieldset>
+                                            <legend>Two-Step Verification</legend>
+                                            <div class="row restaurant_payout_create">
+                                                <hr>
+                                                Two Step Verification Status
+                                                <hr>
+                                                <% if (admin.two_step_verification === 'On') { %>
+                                                    <span class="badge badge-info">Activated</span>
+                                                <% } else if (admin.two_step_verification === 'Pending') { %>
+                                                    <span class="badge badge-warning">Pending</span>
+                                                <% } else { %>
+                                                    <span class="badge badge-danger">De-activated</span>
+                                                <% } %>
+                                            
+                                                <p id="msg<%= admin.id %>" style="color: <%= admin.two_step_verification === 'On' ? 'rgb(230, 20, 20)' : 'green' %>"></p>
+
+                                                <% if (admin.two_step_verification === 'On') { %>
+                                                <a href="javascript:void(0)" onclick="on_off_multifactor('<%= admin.id %>', 'Off', '<%= admin.firstname %>')" title="Turn Off">
+                                                    <img src="../images/icons/makeinactive.png" class="status-image" alt="Deactivate">
+                                                </a>
+                                                <% } else { %>
+                                                <a href="javascript:void(0)" onclick="on_off_multifactor('<%= admin.id %>', 'On', '<%= admin.firstname %>')" title="Activate">
+                                                    <img src="../images/icons/active.png" class="status-image" alt="Activate"> 
+                                                </a>
+                                                <% } %>
+
+                                                <br><br>
+                                                <hr>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+    
             </div>
         </div>
     </main>
@@ -218,6 +222,26 @@
 
 <script src="/validation/js/shivivalidation.js"></script>
 
+
+<!-- Tab Script -->
+<script>
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
+
+            // Toggle buttons
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Toggle content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+</script>
+<!-- Tab Script -->
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

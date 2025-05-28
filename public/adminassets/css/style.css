@@ -6931,7 +6931,7 @@ File: scss
 /*******************
 Main sidebar
 ******************/
-.left-sidebar {
+/* .left-sidebar {
     position: absolute;
     width: 240px;
     height: 100%;
@@ -6945,7 +6945,7 @@ Main sidebar
 
 .fix-sidebar .left-sidebar {
     position: fixed;
-}
+} */
 
 /*******************
 use profile section
@@ -7037,10 +7037,10 @@ sidebar navigation
     display: block;
 }
 
-.sidebar-nav {
+/* .sidebar-nav {
     background: #000;
     padding: 0px;
-}
+} */
 
 .sidebar-nav ul {
     margin: 0px;
@@ -11686,7 +11686,7 @@ img.rounded-circle {
 
 
 .topbar .top-navbar .navbar-header .navbar-brand img#logo_web {
-    max-width: 150px;height: 50px;
+    max-width: 150px;height: 100px;
 }
 
 .table tr td > span.badge-success {
@@ -13446,7 +13446,7 @@ sidebar navigation
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
-  background: #1F2937 url(../images/search_icon.png) no-repeat left 15px center;
+  background: #e8d9ba url(../images/search_icon.png) no-repeat left 15px center;
   width: 100%;
   border: 0;
   color: #6B7280;
@@ -13469,14 +13469,14 @@ sidebar navigation
     list-style: none;
 }
 
-.sidebar-nav ul li a {
+/* .sidebar-nav ul li a {
     color: #D1D5DB;
     padding: 8px 35px 8px 15px;
     display: block;
     font-size: 14px;
     font-weight: 600;
-/*    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;*/
-}
+/*    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+} */
 
 /*.mini-sidebar .sidebar-nav ul li a{color: #fff !important;}*/
 .sidebar-nav ul li a.active, .sidebar-nav ul li a:hover {
@@ -13555,17 +13555,17 @@ sidebar navigation
     border-right: 3px solid transparent;
 }
 
-.sidebar-nav > ul > li > a i {
+/* .sidebar-nav > ul > li > a i {
     width: 27px;
     font-size: 19px;
     display: inline-block;
     vertical-align: middle;
     color: #D1D5DB;
-}
+} */
 
-.mini-sidebar .sidebar-nav #sidebarnav > li:hover a i {
+/* .mini-sidebar .sidebar-nav #sidebarnav > li:hover a i {
     color: #86E837;
-}
+} */
 
 .sidebar-nav > ul > li > a .label {
     float: right;
@@ -13611,7 +13611,7 @@ padding: 5px 20px;
   line-height: 1;
   display: block;
   text-align: left;
-  color: #4B5563;
+  color: #e8d9ba;
   border-radius: 0px 0px 0px 0px;
 }
 
@@ -13786,4 +13786,68 @@ When click on sidebar toggler and also for tablet
     .mini-sidebar.show-sidebar .sidebar-footer {
         left: 0px;
     }
+}
+
+
+
+
+.nav {
+    list-style: none;
+    background: #000000 !important;
+}
+
+
+
+/*------------- Tab Style ------------------*/
+.custom-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid #ccc;
+}
+
+.tab-button.active {
+    background-color: #fff;
+    border-bottom: 1px solid white;
+    color: #7b2d37;
+}
+
+.tab-content-wrapper {
+    border: 1px solid #ccc;
+    border-radius: 0 5px 5px 5px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.breadcrumb .breadcrumb-item a {
+    color: #A83241 !important;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.footer a {
+    color: #7b2d37;
+}
+
+.btn-primary {
+    color: #fff !important;
+    background-color: #A83241 !important;
+    border-color: #A83241 !important;
 }
