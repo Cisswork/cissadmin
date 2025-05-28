@@ -1,0 +1,94 @@
+
+
+<!-- Header Start -->
+
+<%- include ("header.ejs") %>
+<!-- Header End -->
+
+    <aside class="left-sidebar">
+
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+  
+            <%- include ("sidebar.ejs") %>
+        </div>
+        <!-- End Sidebar scroll-->
+
+    </aside>
+
+    <main class="py-4">
+        <div class="page-wrapper">
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">Add Commission</h3>
+                </div>
+
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="#">Add Commission</a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="profile-form">
+                <div class="card-body">
+                    <div id="data-table_processing" class="dataTables_processing panel panel-default"
+                        style="display: none;">Processing...
+                    </div>
+
+                    <div class="column">
+                        <form method="post" action="#">
+                            
+                            <div class="row restaurant_payout_create">
+                                <div class="restaurant_payout_create-inner">
+                                    <fieldset>
+                                        <legend>Commission Details</legend>
+                                        <div class="form-group row">
+                                            <label class="col-5 control-label">Commission Amount</label>
+                                            <div class="col-7">
+                                                <input type="number" class="col-6 form-control" name="name" placeholder="Enter the amount" required>
+                                                <div class="form-text text-muted">
+                                                    Insert amount
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Driver Minimum Wallet Amount</label>
+                                            <div class="col-7">
+                                                <input type="number" class="col-6 form-control" name="name" placeholder="Enter the wallet amount" required>
+                                                <div class="form-text text-muted">
+                                                    Insert amount
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">PayID</label>
+                                            <div class="col-7">
+                                                <input type="text" class=" col-6 form-control" name="email" placeholder="Enter the payid" required>
+                                                <div class="form-text text-muted">
+                                                    Insert PayID
+                                                </div>
+                                            </div>
+                                        </div>
+                                                                       
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12 text-center btm-btn">
+                            <button type="submit" class="btn btn-primary  edit-setting-btn" id="edit-setting-btn"><i class="fa fa-save"></i> Submit</button>
+                            <a href="commission.php" class="btn btn-default"><i class="fa fa-undo"></i>Back </a>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </main>
+
+<!-- Footer Start -->
+
+<%- include ("footer.ejs") %>
+<!-- Footer End -->
+
+                                       

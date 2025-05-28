@@ -1,0 +1,424 @@
+
+<!-- Header Start -->
+<%- include('header.ejs'); %>
+<!-- Header End -->
+<link rel="stylesheet" href="/validation/css/global.css">
+    <aside class="left-sidebar">
+
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <%- include('sidebar.ejs'); %>
+        </div>
+        <!-- End Sidebar scroll-->
+
+    </aside>
+
+    <main class="py-4">
+        <div class="page-wrapper">
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">Admin Profile</h3>
+                </div>
+
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="#">Admin Details</a></li>
+                        <li class="breadcrumb-item active">Administrator</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="profile-form">
+                <div class="card-body">
+                    <div id="data-table_processing" class="dataTables_processing panel panel-default"
+                        style="display: none;">Processing...
+                    </div>
+
+                    <div class="column">
+                        <form method="post" action="/admin/profile" enctype="multipart/form-data" id="profileFormPost">
+                            <input type="hidden" name="_csrf" value="">
+                            <div class="row restaurant_payout_create">
+                                <div class="restaurant_payout_create-inner">
+                                    <fieldset>
+                                        <legend>Adminstrator Details</legend>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Firstname</label>
+                                            <div class="col-7">
+                                                <input type="text" class=" col-6 form-control" value="<%= admin.firstname %>"  name="firstname" id="firstname" placeholder="Enter the firstname" >
+                                                
+
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Lastname</label>
+                                            <div class="col-7">
+                                                <input type="text" class=" col-6 form-control" value="<%= admin.lastname %>" name="lastname" id="lastname" placeholder="Enter the lastname" >
+                                                
+                                            </div>
+                                        </div>
+
+
+                                          <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Username</label>
+                                            <div class="col-7">
+                                                <input type="text" class=" col-6 form-control" value="<%= admin.username %>" name="username" id="lastname" placeholder="Enter the username" >
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Email</label>
+                                            <div class="col-7">
+                                                <input type="text" class=" col-6 form-control" value="<%= admin.email %>" name="email"  data-optional="true" readonly placeholder="Enter the email" >
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Profile Pic</label>
+                                            <div class="col-7">
+                                                <input type="file" data-optional="true" class=" col-6 form-control" name="image" >
+                                                <img src="/uploads/<%= admin.image %>" width="50px"> 
+                                            </div>
+                                        </div>
+
+                     
+
+
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Contact No.</label>
+                                            <div class="col-7">
+                                              
+                                                <input type="tel"  name="contact"  id="contact" class="form-control" value="<%= admin.contact %>"/>
+                                                <input type="hidden" name="country_code" readonly id="country_code" value="<%= admin.country_code %>" />
+                                                <input type="hidden" name="country_flag" data-optional="true" id="country_flag" />
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12 text-center btm-btn">
+                            <button type="submit" class="btn btn-primary  edit-setting-btn" id="edit-setting-btn">Profile Update</button>
+                            <a href="/admin" class="btn btn-default"><i class="fa fa-undo"></i>Back </a>
+                        </div>
+                    </form>
+                    <br><br>
+
+                    <div class="row restaurant_payout_create">
+                            <% if (output.includes('successfully')) { %>
+                        <p id="message" class="success-text" style="color: green;"><%= output %></p>
+                    <% } else { %>
+                        <p id="message" class="error-text" style="color: red;"><%= output %></p>
+                    <% } %>
+
+                    </div>
+
+                
+
+
+                    <form method="post" action="/admin/changepass" id="passwordFormPost">
+                        <input type="hidden" name="_csrf" value="">
+                        <div class="row restaurant_payout_create">
+                            <div class="restaurant_payout_create-inner">
+                                <fieldset>
+                                    <legend>Change Password</legend>
+                                    <!-- Old Password -->
+                                    <div class="form-group row width-50 position-relative">
+                                        <label class="col-5 control-label">Old Password</label>
+                                        <div class="col-7 position-relative">
+                                            <input type="password" class="form-control col-6" name="opass" data-skip-password-validation id="opass" placeholder="Enter the password" >
+                                            <span toggle="#opass" class="fa fa-fw fa-eye-slash toggle-password"
+                                                style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
+                                           
+                                        </div>
+                                    </div>
+
+                                    <!-- New Password -->
+                                    <div class="form-group row width-50 position-relative">
+                                        <label class="col-5 control-label">New Password</label>
+                                        <div class="col-7 position-relative">
+                                            <input type="password" class="form-control col-6" name="npass" id="npass" placeholder="Enter the new password" >
+                                            <span toggle="#npass" class="fa fa-fw fa-eye-slash toggle-password" style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
+                                           
+                                        </div>
+                                    </div>
+
+                                    <!-- Confirm Password -->
+                                    <div class="form-group row width-50 position-relative">
+                                        <label class="col-5 control-label">Confirm Password</label>
+                                        <div class="col-7 position-relative">
+                                            <input type="password" class="form-control col-6" name="cpass" data-skip-password-validation id="cpass" placeholder="Enter the password" >
+                                            <span toggle="#cpass" class="fa fa-fw fa-eye-slash toggle-password"
+                                                style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 text-center btm-btn">
+                        <button type="submit" class="btn btn-danger  edit-setting-btn" id="edit-setting-btn">Change Password</button>
+                        <a href="/admin" class="btn btn-default"><i class="fa fa-undo"></i>Back </a>
+                    </div>
+                </form>
+                <br><br>
+
+
+
+                    <div class="row restaurant_payout_create">
+
+
+                        
+										  <hr>
+										  Two Step Verification Status
+										  <hr>
+										   <% if (admin.two_step_verification === 'On') { %>
+											 <span class="badge badge-info">Activated</span>
+										   <% } else if (admin.two_step_verification === 'Pending') { %>
+											 <span class="badge badge-warning">Pending</span>
+										   <% } else { %>
+											 <span class="badge badge-danger">De-activated</span>
+										   <% } %>
+									 
+										   <p id="msg<%= admin.id %>" style="color: <%= admin.two_step_verification === 'On' ? 'rgb(230, 20, 20)' : 'green' %>"></p>
+
+
+
+											 <% if (admin.two_step_verification === 'On') { %>
+											   <a href="javascript:void(0)" onclick="on_off_multifactor('<%= admin.id %>', 'Off', '<%= admin.firstname %>')" title="Turn Off">
+												 <img src="../images/icons/makeinactive.png" class="status-image" alt="Deactivate">
+											   </a>
+											 <% } else { %>
+											   <a href="javascript:void(0)" onclick="on_off_multifactor('<%= admin.id %>', 'On', '<%= admin.firstname %>')" title="Activate">
+												 <img src="../images/icons/active.png" class="status-image" alt="Activate"> 
+											   </a>
+											 <% } %>
+
+                                              <br><br>
+                                              <hr>
+                     
+
+                    </div>
+
+            </div>
+        </div>
+    </main>
+
+<!-- Footer Start -->
+    <%- include('footer.ejs'); %>
+<!-- Footer End -->
+
+
+
+<script src="/validation/js/shivivalidation.js"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".toggle-password").forEach(function (eyeIcon) {
+            eyeIcon.addEventListener("click", function () {
+                const input = document.querySelector(this.getAttribute("toggle"));
+                const type = input.getAttribute("type") === "password" ? "text" : "password";
+                input.setAttribute("type", type);
+                this.classList.toggle("fa-eye-slash");
+                this.classList.toggle("fa-eye");
+            });
+        });
+    });
+</script>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const input = document.querySelector("#contact");
+      const countryCodeInput = document.querySelector("#country_code");
+      const form = document.querySelector("#editUserForm");
+  
+      const iti = window.intlTelInput(input, {
+        separateDialCode: true,
+        preferredCountries: ["in", "us", "au"],
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+  
+      });
+      document.querySelector(".iti__selected-flag").style.pointerEvents = "none";
+  
+      //  Dynamic country code to ISO converter using intl-tel-input data
+      function userCountryCodeToISO(code) {
+        const allCountries = window.intlTelInputGlobals.getCountryData();
+        const matched = allCountries.find(c => "+" + c.dialCode === code);
+      
+        return matched ? matched.iso2 : 'in';
+       
+  
+      }
+  
+      //  Set initial flag based on database country code
+      const dbCountryCode = "<%= admin.country_code %>"; // e.g., '+91'
+      if (dbCountryCode) {
+        const isoCode = userCountryCodeToISO(dbCountryCode);
+        iti.setCountry(isoCode);
+      }
+  
+      //  Update hidden input on country change
+      input.addEventListener("countrychange", function () {
+        countryCodeInput.value = "+" + iti.getSelectedCountryData().dialCode;
+      });
+  
+      //  Validation handling
+      function getErrorField() {
+        let errorField = document.getElementById("contactError");
+        if (!errorField) {
+          errorField = document.createElement("span");
+          errorField.id = "contactError";
+          errorField.className = "error-msg";
+          input.insertAdjacentElement("afterend", errorField);
+        }
+        return errorField;
+      }
+  
+      input.addEventListener("input", () => {
+        const errorField = getErrorField();
+        const phoneValue = input.value.trim();
+  
+        if (!phoneValue) {
+          input.classList.add("invalid");
+          errorField.textContent = "Contact is required";
+        } else if (!iti.isValidNumber()) {
+          input.classList.add("invalid");
+          errorField.textContent = "Invalid phone number for selected country.";
+        } else {
+          input.classList.remove("invalid");
+          errorField.textContent = "";
+        }
+      });
+  
+      form.addEventListener("submit", function (e) {
+        const errorField = getErrorField();
+        const phoneValue = input.value.trim();
+  
+        countryCodeInput.value = "+" + iti.getSelectedCountryData().dialCode;
+  
+        if (!phoneValue || !iti.isValidNumber()) {
+          e.preventDefault();
+          input.classList.add("invalid");
+          errorField.textContent = !phoneValue
+            ? "Contact is required"
+            : "Invalid phone number for selected country.";
+        }
+      });
+    });
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+	    //  document.cookie = 'user_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+         document.cookie = 'kil_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+         document.cookie = 'kil_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            //document.cookie = 'kwl_booking_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+
+
+let csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+
+
+
+
+function on_off_multifactor(user_id, newStatus,username ) {
+  
+
+  event.preventDefault(); 
+  var action;
+if(newStatus== 'Off'){
+  action = 'Deactivated'
+}else{
+  action = 'activated '
+}
+ 
+
+  const userStatusElement = document.getElementById(`userStatus${user_id}`);
+  const pmsgElement  = document.getElementById(`msg${user_id}`);
+
+    $.ajax({
+        url: '/admin/on_off_multifactor',
+        type: 'POST',
+        headers: {  'CSRF-Token': csrfToken },
+        data: { id: user_id, status: newStatus,  _csrf: csrfToken  },
+        beforeSend: function() {
+            // Hide the kilstatus paragraph before the request
+            $('.kilstatus').hide();
+        },
+        success: function(response) {  
+           console.log(response)       
+           
+                    if (response.success == true) {
+               
+                                                      $('[data-user-id="' + user_id + '"]').attr('data-user-status', newStatus);
+
+                                // Update image source and tooltip based on new status
+                                var imgSrc = (newStatus === 'On') ? '../images/icons/active.png' : '../images/icons/inactive.png';
+                                $('[data-user-id="' + user_id + '"] .two_step_verification-image').attr('src', imgSrc);
+                                $('[data-user-id="' + user_id + '"] .two_step_verification-tooltip').attr('title', (newStatus === 'On') ? 'deactive' : 'active');
+
+                                // Add fade in overlay and change background color based on new status
+                                var bgColor = (newStatus === 'On') ? 'rgba(163,209,121,0.5)' : 'rgba(227 99 99 / 50%)';
+
+                                var textColor = (newStatus === 'On') ? '#3c763d' : '#ffffff'; // White font for non-Approve status
+                                // var textColor = (newStatus === 'On') ? 'rgba(163,209,121,0.5)' : 'rgba(227 99 99 / 50%)';
+                                // $('[data-user-id="' + user_id + '"] .two_step_verification-overlay').css('background-color', bgColor).fadeIn();
+
+
+
+                                $('[data-user-id="' + user_id + '"] .two_step_verification-overlay').css({
+                                    'background-color': bgColor,
+                                    'color': textColor + ' !important', // Force the font color change
+                                  
+                                }).fadeIn();
+
+
+                                pmsgElement.innerHTML = response.msg;
+                                var msg = 'User ('+username+') '+action+' successfully'
+                                document.cookie = `invoice_msg=${msg}`;
+
+                                // Fade out the overlay after a delay
+                                setTimeout(function() {
+                                 
+                                    $('[data-user-id="' + user_id + '"] .two_step_verification-overlay').fadeOut();
+                                    window.location.href = '/admin/profile'
+                                }, 1500);
+
+                                // $('.kilstatus').show();
+
+
+              } else {
+                  console.error('Error:', response.msg);
+                  $("#errorMessage").removeClass("d-none");
+                  $("#successMessage").addClass("d-none");
+              }
+
+
+        },
+        error: function(error) { alert("ajax error")
+          console.error('Error:', error);
+          $("#errorMessage").text('Ajax Error',error);
+    $("#errorMessage").removeClass("d-none");
+    $("#successMessage").addClass("d-none");
+        }
+    });
+}
+
+
+
+
+
+
+  </script>

@@ -1,0 +1,143 @@
+
+<!-- Header Start -->
+
+<%- include ("header.ejs") %>
+<!-- Header End -->
+
+    <aside class="left-sidebar">
+
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+  
+            <%- include ("sidebar.ejs") %>
+        </div>
+        <!-- End Sidebar scroll-->
+
+    </aside>
+
+    <main class="py-4">
+        <div class="page-wrapper">
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">Users</h3>
+                </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+                        <li class="breadcrumb-item active">User List</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="admin-top-section"> 
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex top-title-section pb-4 justify-content-between">
+                                <div class="d-flex top-title-left align-self-center">
+                                    <span class="icon mr-3"><img src="assets/images/users.png"></span>
+                                    <h3 class="mb-0">Users</h3>
+                                    <span class="counter ml-3 total_count">12</span>
+                                </div>
+                                <div class="d-flex top-title-right align-self-center">
+                                    <div class="select-box pl-3">
+                                        <select class="form-control status_selector filteredRecords">
+                                            <option value="">status</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                    <div class="select-box pl-3">
+                                        <div id="daterange"><i class="fa fa-calendar"></i>&nbsp;
+                                            <span>Select Range</span>&nbsp; <i class="fa fa-caret-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="table-list">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border">
+                            <div class="card-header d-flex justify-content-between align-items-center border-0">
+                            <div class="card-header-title">
+                                <h3 class="text-dark-2 mb-2 h4">Users List</h3>
+                                <p class="mb-0 text-dark-2">View and manage all the users</p>
+                            </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive m-t-10">
+                                    <table id="userTable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th class="delete-all">
+                                                    <input type="checkbox" id="is_active">
+                                                    <label for="is_active"><i class="mdi mdi-delete"></i> All</label>
+                                                </th>
+                                                <th>User Info</th>
+                                                <th>Email</th>
+                                                <th>Contact No.</th>
+                                                <th>DOB</th>
+                                                <th>Date</th>
+                                                <th>Active</th>
+                                                <th>Total Rides</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd">  
+                                                <td class="dtr-control">
+                                                    <input type="checkbox" class="is_open" dataid="1l08MS30kYcP20kYqQ1yXKY0nwA2"><label class="col-3 control-label"></label>
+                                                </td>
+                                                <td><img style="width:70px;height:70px;" src="https://goride.siswebapp.com/images/default_user.png" alt="image"><a href="#">Ngk asdd</a></td>
+                                                <td>n**********@mail.me</td>
+                                                <td>+1***********</td>
+                                                <td>10/04/2025</td>
+                                                <td>Tue Apr 08 2025 3:53:04 PM</td>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input type="checkbox" checked name="isActive">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                                <td>1</td>
+                                                <td>
+                                                    <span class="action-btn">
+                                                        <a href="#"><i class="mdi mdi-eye"></i></a>
+                                                        <a href="#"><i class="mdi mdi-lead-pencil"></i></a> 
+                                                        <a class="delete-btn" href="javascript:void(0)"><i class="mdi mdi-delete"></i></a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<!-- Footer Start -->
+
+<%- include ("footer.ejs") %>
+<!-- Footer End -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectAllCheckbox = document.getElementById('is_active');
+        const checkboxes = document.querySelectorAll('.is_open');
+
+        selectAllCheckbox.addEventListener('change', function () {
+            checkboxes.forEach(function (cb) {
+                cb.checked = selectAllCheckbox.checked;
+            });
+        });
+    });
+</script>
+
+

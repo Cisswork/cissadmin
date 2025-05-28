@@ -1,0 +1,187 @@
+<div class="sidebar-search">
+    <input type="text" id="sideBarSearchInput" placeholder="search_menu" autocomplete="one-time-code"
+        onkeyup="filterMenu()">
+</div>
+<nav class="sidebar-nav">
+    <ul id="sidebarnav">
+        <li>
+            <a class="waves-effect waves-dark" href="/admin" aria-expanded="false">
+                <i class="mdi mdi-home"></i>
+                <span class="hide-menu">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-subtitle"><span class="nav-subtitle-span">Account Management</span></li>
+        <li>
+            <a class="has-arrow waves-effect waves-dark driver_menu" href="#" aria-expanded="false">
+                <i class="mdi mdi-account-multiple"></i>
+                <span class="hide-menu">Users</span>
+            </a>
+            <ul aria-expanded="false" class="collapse driver_sub_menu">
+                <li class="all_driver_menu"><a href="/admin/addUser">Add User</a></li>
+                <li class="approve_driver_menu"><a href="/admin/viewUser">View Users</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="has-arrow waves-effect waves-dark driver_menu" href="#" aria-expanded="false">
+                <i class="mdi mdi-account-card-details"></i>
+                <span class="hide-menu"> Demo Section </span>
+            </a>
+            <ul aria-expanded="false" class="collapse driver_sub_menu">
+                <li class="all_driver_menu"><a href="/admin/addDriver"> Add Section</a></li>
+                <li class="approve_driver_menu"><a href="/admin/viewDriver"> View Section</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="has-arrow waves-effect waves-dark report_menu" href="#" aria-expanded="false">
+                <i class="mdi mdi-calendar-check"></i>
+                <span class="hide-menu">Report</span>
+            </a>
+            <ul aria-expanded="false" class="collapse report_sub_menu">
+                <li><a href="/admin/userRide"> Demo Report 1</a></li>
+                <li><a href="/admin/driverRide">Demo Report 2</a></li>
+                <li><a href="/admin/rideHistory">Demo History</a></li>
+                <!-- <li><a href="reports">User Ride Cancel</a></li>
+                <li><a href="reports">Driver Ride Cancel</a></li> -->
+            </ul>
+        </li>
+
+
+        <li class="nav-subtitle"><span class="nav-subtitle-span">New Section Title</span></li>
+        <li>
+            <a class="waves-effect waves-dark vehicle_type_menu" href="/admin/viewVehicleType" aria-expanded="false">
+                <i class="mdi mdi-car"></i>
+                <span class="hide-menu">Sub Section 1</span>
+            </a>
+        </li>
+        <li>
+            <a class="waves-effect waves-dark tax_menu" href="/admin/viewCommission" aria-expanded="false">
+                <i class="mdi mdi-cash"></i>
+                <span class="hide-menu">Sub Section 1</span>
+            </a>
+        </li>
+
+
+
+        <li class="nav-subtitle"><span class="nav-subtitle-span">App Management</span></li>
+        <li>
+            <a class="waves-effect waves-dark faq_menu" href="/admin/faqs" aria-expanded="false">
+                <i class="mdi mdi-comment-question-outline"></i>
+                <span class="hide-menu">Faq's</span>
+            </a>
+        </li>
+        <li>
+            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="true">
+                <i class="mdi mdi-lock-outline"></i>
+                <span class="hide-menu">Terms & Conditions</span>
+            </a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="/admin/add_terms_condition">User T&C</a></li>
+                <li><a href="/admin/add_terms_condition">Driver T&C</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="true">
+                <i class="mdi mdi-lock-outline"></i>
+                <span class="hide-menu">Privacy & Policy </span>
+            </a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="/admin/add_privacy_policy">User Privacy Policy</a></li>
+                <li><a href="/admin/add_privacy_policy">Driver Privacy Policy</a></li>
+            </ul>
+        </li>
+
+          <li>
+            <a class="waves-effect waves-dark faq_menu" href="/admin/logout" aria-expanded="false">
+                <i class="mdi mdi-logout"></i>
+                <span class="hide-menu">Logout</span>
+            </a>
+        </li>
+
+        <!-- <li>
+            <a class="has-arrow waves-effect waves-dark setting_menu" href="#" aria-expanded="false">
+                <i class="mdi mdi-settings"></i>
+                <span class="hide-menu">Setting</span>
+            </a>
+            <ul aria-expanded="false" class="collapse setting_sub_menu">
+                <li><a href="/admin/globalSettings">Global Setting</a></li>
+            </ul>
+        </li> -->
+        <!-- <li>
+            <a class="waves-effect waves-dark" href="live_tracking.php" aria-expanded="false">
+                <i class="mdi mdi-home-map-marker"></i>
+                <span class="hide-menu"> God's Eye</span>
+            </a>
+        </li>
+        <li>
+            <a class="waves-effect waves-dark" href="zone.php" aria-expanded="false">
+                <i class="mdi mdi-map-marker-circle"></i>
+                <span class="hide-menu"> Zone </span>
+            </a>
+        </li> -->
+    </ul>
+</nav>
+<script>
+    // Filter Script 
+    function filterMenu() {
+        const searchInput = document.getElementById('sideBarSearchInput').value.toLowerCase();
+        const menuItems = document.getElementById('sidebarnav').getElementsByTagName('li');
+        for (let i = 0; i < menuItems.length; i++) {
+            const item = menuItems[i];
+            const itemText = item.textContent.toLowerCase();
+            if (itemText.indexOf(searchInput) === -1) {
+                item.style.display = 'none';
+            } else {
+                item.style.display = '';
+            }
+        }
+    }
+
+    // Menu Click to Submenu Open Close 
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select all menu links with "has-arrow"
+        const menuLinks = document.querySelectorAll('.has-arrow');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent "#" navigation
+
+                // Find the next sibling <ul> (the submenu)
+                const submenu = this.nextElementSibling;
+
+                // Toggle submenu display
+                if (submenu.classList.contains('collapse')) {
+                    submenu.classList.toggle('show');
+                }
+            });
+        });
+    });
+
+    // Toggle Menu Script Open Close Mobile
+    document.addEventListener("DOMContentLoaded", function () {
+        // MOBILE: menu toggle
+        document.querySelectorAll(".nav-toggler").forEach(function (el) {
+            el.addEventListener("click", function () {
+                const body = document.body;
+                body.classList.toggle("show-sidebar");
+
+                // Toggle icon: mdi-menu ↔ mdi-close
+                const icon = el.querySelector("i");
+                if (body.classList.contains("show-sidebar")) {
+                    icon.classList.remove("mdi-menu");
+                    icon.classList.add("mdi-close");
+                } else {
+                    icon.classList.remove("mdi-close");
+                    icon.classList.add("mdi-menu");
+                }
+            });
+        });
+
+        // // DESKTOP: sidebar toggle
+        // document.querySelectorAll(".sidebartoggler").forEach(function (el) {
+        //     el.addEventListener("click", function () {
+        //         document.body.classList.toggle("mini-sidebar");
+        //     });
+        // });
+    });
+</script>

@@ -1,0 +1,189 @@
+
+<!-- Header Start -->
+<%- include('header.ejs'); %>
+<!-- Header End -->
+
+    <aside class="left-sidebar">
+
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <%- include('sidebar.ejs'); %>
+        </div>
+        <!-- End Sidebar scroll-->
+
+    </aside>
+
+    <main class="py-4">
+
+        <div class="page-wrapper">
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">FAQs</h3>
+                </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                        <li class="breadcrumb-item active">FAQs</li>
+                    </ol>
+                </div>
+            <div>
+        </div>
+        </div>
+   
+
+        <div class="container-fluid">
+            <div class="admin-top-section">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex top-title-section pb-4 justify-content-between">
+                            <div class="d-flex top-title-left align-self-center">
+                                <span class="icon mr-3"><img src="/adminassets/images/faq.png"></span>
+                                <h3 class="mb-0">FAQs</h3>
+                                <span class="counter ml-3 total_count">2</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border">
+                        <div class="card-header d-flex justify-content-between align-items-center border-0">
+                            <div class="card-header-title">
+                                <h3 class="text-dark-2 mb-2 h4">FAQs</h3>
+                                <p class="mb-0 text-dark-2">View and manage all the faqs</p>
+                            </div>
+                            <div class="card-header-right d-flex align-items-center">
+                                <div class="card-header-btn mr-3">
+                                    <a class="btn-primary btn rounded-full" href="/admin/addFaq"><i
+                                            class="mdi mdi-plus mr-2"></i>Create FAQ</a>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="card-body">
+
+
+                            <div class="table-responsive m-t-10">
+                                <table id="userTable" class="display nowrap table table-hover table-striped table-bordered table table-striped" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="delete-all"><input type="checkbox" id="is_active"><label class="col-3 control-label" for="is_active"><a id="deleteAll"
+                                            class="do_not_delete" href="javascript:void(0)"><i class="mdi mdi-delete"></i> All </a></label></th>
+                                            <th>FAQ</th>
+                                            <th>Answer</th>
+                                           
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>     
+
+                                    <% faqs.forEach((faq, index) => { %>
+                                    <tr class="odd">
+                                       
+                                        <td class="dtr-control"><input type="checkbox" class="is_open" dataid="1l08MS30kYcP20kYqQ1yXKY0nwA2"><label class="col-3 control-label"></label></td>
+                                        <td><%- faq.faq %></td>
+                                        <td><%- faq.answer %></td>
+                                        <!-- <td><label class="switch"><input type="checkbox" checked="" id="1l08MS30kYcP20kYqQ1yXKY0nwA2" name="isActive"><span class="slider round"></span></label></td> -->
+                                        <td>
+                                            <span class="action-btn">
+                                                <a href="#" onclick="editFaq('<%= faq.faq_id %>')"><i class="mdi mdi-lead-pencil"></i></a> 
+                                                <a id="1l08MS30kYcP20kYqQ1yXKY0nwA2" class="delete-btn" name="user-delete" href="#" onclick="deleteFaq('<%= faq.faq_id %>')"><i class="mdi mdi-delete"></i></a>
+                                            </span>
+                                        </td>
+                                    </tr>    
+
+                                    <% }); %>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+        
+
+    </main>
+
+<!-- Footer Start -->
+<%- include('footer.ejs'); %>
+<!-- Footer End -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectAllCheckbox = document.getElementById('is_active');
+        const checkboxes = document.querySelectorAll('.is_open');
+
+        selectAllCheckbox.addEventListener('change', function () {
+            checkboxes.forEach(function (cb) {
+                cb.checked = selectAllCheckbox.checked;
+            });
+        });
+    });
+</script>
+
+
+<script>
+    function editFaq(faqID) {
+        
+        document.cookie = `faq_id=${faqID}`;
+       
+        window.location.href = '/admin/editFaq';
+          
+      }
+    
+      function deleteFaq(faqID) {
+
+       
+      
+            
+      // Use SweetAlert2 for a stylish confirmation
+      Swal.fire({
+               title: 'Are you sure?',
+               html: `<span style="color: red;">All the data related to faq will be permanently deleted </span>`,
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes, delete faq'
+           }).then((result) => {
+               if (result.isConfirmed) {
+                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                   // Make an AJAX request to delete the user
+                               $.ajax({
+                               url: '/admin/deleteFaq',
+                               type: 'POST',
+                               headers: {
+                    'X-CSRF-TOKEN': csrfToken // Use the correct header name
+                },
+                               data: { faq_id: faqID },
+                               success: function(response) {
+                                 if (response.success == true) {
+                                   document.cookie = `kil_msg=${response.message}`;
+                                   window.location.href = '/admin/faqs'
+                                 }else{
+                                //    alert(response.message)
+                                 }
+                               },
+                               error: function(error) {
+                                   console.error('Error:', error);
+                               }
+                           });
+               }
+      });
+    
+    }
+    
+
+    document.addEventListener("DOMContentLoaded", function() {
+	     document.cookie = 'faq_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+         document.cookie = 'kil_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+         document.cookie = 'kil_msg'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            //document.cookie = 'kwl_booking_id'+'=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+       
+    });
+    </script>
+    

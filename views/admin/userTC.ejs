@@ -1,0 +1,76 @@
+
+<!-- Header Start -->
+
+<%- include ("header.ejs") %>
+<!-- Header End -->
+
+    <aside class="left-sidebar">
+
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+  
+            <%- include ("sidebar.ejs") %>
+        </div>
+        <!-- End Sidebar scroll-->
+
+    </aside>
+
+
+    <main class="py-4">
+        <div class="page-wrapper">
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">User Terms and Conditions</h3>
+                </div>
+
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Terms and Conditions</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs" id="language-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="tab-en" data-bs-toggle="tab" href="#content-en" role="tab" aria-selected="true">
+                                    Tab
+                                    <!-- <span class="badge badge-success ml-2">Default</span> -->
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+
+                        <div id="data-table_processing" class="dataTables_processing panel panel-default"
+                            style="display: none;">Terms and Conditions</div>
+                        <div class="error_top"></div>
+
+                        <div class="terms-cond restaurant_payout_create row">
+                            <div class="restaurant_payout_create-inner">
+                                <fieldset>
+                                    <legend>Terms and Conditions</legend>
+                                    <textarea id="summernote"></textarea>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="form-group col-12 text-center btm-btn">
+                            <button type="button" class="btn btn-primary  edit-setting-btn"><i class="fa fa-save"></i> Save</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+<!-- Footer Start -->
+
+<%- include ("footer.ejs") %>
+<!-- Footer End -->
+
+

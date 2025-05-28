@@ -1,0 +1,134 @@
+
+<!-- Header Start -->
+
+<%- include ("header.ejs") %>
+<!-- Header End -->
+
+    <aside class="left-sidebar">
+
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+  
+            <%- include ("sidebar.ejs") %>
+        </div>
+        <!-- End Sidebar scroll-->
+
+    </aside>
+
+    <main class="py-4">
+        <div class="page-wrapper">
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">Add Driver</h3>
+                </div>
+
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="#">Add Driver</a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="profile-form">
+                <div class="card-body">
+                    <div id="data-table_processing" class="dataTables_processing panel panel-default"
+                        style="display: none;">Processing...
+                    </div>
+
+                    <div class="column">
+                        <form method="post" action="#">
+                            
+                            <div class="row restaurant_payout_create">
+                                <div class="restaurant_payout_create-inner">
+                                    <fieldset>
+                                        <legend>Driver Details</legend>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Firstname</label>
+                                            <div class="col-7">
+                                                <input type="text" class="col-6 form-control" name="name" placeholder="Enter the firstname" required>
+                                                <div class="form-text text-muted">
+                                                    Insert Name
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Lastname</label>
+                                            <div class="col-7">
+                                                <input type="text" class="col-6 form-control" name="name" placeholder="Enter the lastname" required>
+                                                <div class="form-text text-muted">
+                                                    Insert Name
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Email</label>
+                                            <div class="col-7">
+                                                <input type="text" class=" col-6 form-control" name="email" placeholder="Enter the email" required>
+                                                <div class="form-text text-muted">
+                                                    Insert Email
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Password Field -->
+                                        <div class="form-group row width-50 position-relative">
+                                            <label class="col-5 control-label">Password</label>
+                                            <div class="col-7 position-relative">
+                                                <input type="password" class="col-6 form-control" name="password" id="password" placeholder="Enter the password" required>
+                                                
+                                                <!-- 👁️ Eye Icon -->
+                                                <span toggle="#password" class="fa fa-fw fa-eye-slash toggle-password"
+                                                    style="position: absolute; top: 10px; right: 25px; cursor: pointer;"></span>
+
+                                                <div class="form-text text-muted">Insert your password</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Profile Pic</label>
+                                            <div class="col-7">
+                                                <input type="file" class=" col-6 form-control" name="image" required>
+                                                <div class="form-text text-muted">
+                                                    Insert Image
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row width-50">
+                                            <label class="col-5 control-label">Contact No.</label>
+                                            <div class="col-7">
+                                                <input type="tel" id="kilvishcontact" name="kilvishcontact" class="form-control" placeholder="Enter your contact number" required>
+                                                <!-- Hidden fields for full phone number and country code -->
+                                                <input type="hidden" id="fullkilvishcontact" name="fullkilvishcontact">
+                                                <input type="hidden" id="country_code" name="country_code">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12 text-center btm-btn">
+                            <button type="submit" class="btn btn-primary  edit-setting-btn" id="edit-setting-btn"><i class="fa fa-save"></i> Submit</button>
+                            <a href="viewDriver.php" class="btn btn-default"><i class="fa fa-undo"></i>Back </a>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </main>
+
+<!-- Footer Start -->
+    <?php include('footer.php'); ?>
+<!-- Footer End -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".toggle-password").forEach(function (eyeIcon) {
+            eyeIcon.addEventListener("click", function () {
+                const input = document.querySelector(this.getAttribute("toggle"));
+                const type = input.getAttribute("type") === "password" ? "text" : "password";
+                input.setAttribute("type", type);
+                this.classList.toggle("fa-eye-slash");
+                this.classList.toggle("fa-eye");
+            });
+        });
+    });
+</script>

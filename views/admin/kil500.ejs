@@ -1,0 +1,65 @@
+
+<!-- Header Start -->
+
+<%- include ("header.ejs") %>
+<!-- Header End -->
+
+    <aside class="left-sidebar">
+
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+  
+            <%- include ("sidebar.ejs") %>
+        </div>
+        <!-- End Sidebar scroll-->
+
+    </aside>
+
+    <main class="py-4">
+        <div class="page-wrapper">
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">Internal Server Error</h3>
+                </div>
+
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="#">Error</a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="profile-form">
+                  <!-- alert msgs -->
+                      <% if ( output.includes('successfully') ) { %>
+                        <p  class="success-text"><%= output %></p>
+                     <% } else { %>
+                        <p class="error-text"><%= output %></p>
+                     <% } %>
+                       <!-- /alert msgs -->
+                <div class="card-body">
+                   
+
+          <img src="../images/icons/500.gif" style="height: 650px !important; width: 100%;">
+            </div>
+        </div>
+    </main>
+
+<!-- Footer Start -->
+    <?php include('footer.php'); ?>
+<!-- Footer End -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".toggle-password").forEach(function (eyeIcon) {
+            eyeIcon.addEventListener("click", function () {
+                const input = document.querySelector(this.getAttribute("toggle"));
+                const type = input.getAttribute("type") === "password" ? "text" : "password";
+                input.setAttribute("type", type);
+                this.classList.toggle("fa-eye-slash");
+                this.classList.toggle("fa-eye");
+            });
+        });
+    });
+</script>
